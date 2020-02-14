@@ -1,6 +1,12 @@
 package me.yuna;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+
 import javax.security.auth.login.LoginException;
+
+import org.json.JSONObject;
 
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
@@ -14,12 +20,16 @@ import net.dv8tion.jda.api.entities.Activity;
 public class Bot {
 	
 	
-
 	
-	public Bot() throws LoginException {
+	private JSONObject tokens;
+
+	public Bot() throws LoginException, IOException {
 		
+		String file = new String(Files.readAllBytes(new File("tokens.tkn").toPath()));
+		this.tokens = new JSONObject(file);
+	
 		final JDA jda = new JDABuilder(AccountType.BOT)
-				.setToken("NjA1NDg0OTU3NDI2NjQ3MTQ3.XkPJlg.St9eh_HId4AHhBf118MshNIBN40").build();
+				.setToken(tokens.getString("discordtkn")).build();
 				
 		CommandClientBuilder builder = new CommandClientBuilder();
 			builder.setPrefix("?");
@@ -37,7 +47,7 @@ public class Bot {
 		
 	}
 	
-public static void main(String[] args) throws LoginException {
+public static void main(String[] args) throws LoginException, IOException {
 		
 		new Bot();
 		System.out.println("Bot enabled");

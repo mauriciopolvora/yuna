@@ -30,7 +30,7 @@ public class FootballCommand extends Command {
 	
 	
 	public String parse (String responseBody) {
-		JSONArray infos = new JSONArray("[" + responseBody + "]");
+		JSONArray infos = new JSONArray(responseBody);
 		for(int i= 0; i < infos.length(); i++) {
 			JSONObject info = infos.getJSONObject(i);
 			shortName = info.getString("shortName");
