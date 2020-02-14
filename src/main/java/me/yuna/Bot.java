@@ -32,15 +32,18 @@ public class Bot {
 				.setToken(tokens.getString("discordtkn")).build();
 				
 		CommandClientBuilder builder = new CommandClientBuilder();
-			builder.setPrefix("?");
-			builder.setActivity(Activity.watching("you"));
+			builder.setPrefix("yuna");
+			builder.setActivity(Activity.watching("'yuna help'"));
 			builder.setOwnerId("195992711982088192");
+			builder.setHelpWord("helpme");
 			
 		
 		CommandClient client = builder.build();
 
 			client.addCommand(new MemeCommand());
 			client.addCommand(new FootballCommand());
+			client.addCommand(new HelpCommand());
+			
 		
 		jda.addEventListener(client);
 		

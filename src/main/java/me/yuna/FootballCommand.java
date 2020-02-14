@@ -6,17 +6,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.sql.Connection;
-
-import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.fasterxml.jackson.databind.deser.BuilderBasedDeserializer;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
@@ -248,7 +241,7 @@ public class FootballCommand extends Command {
 				Match[] matches = parseMatches(responseContent.toString());
 				
 				int currentMatchDay = matches[0].getCurrentMatchDay();
-				String response = "";
+				String response = "Jogos nos proximos 2 dias: " + "\n";
 				
 				for (int i = 0; i < matches.length; i++) {
 					
