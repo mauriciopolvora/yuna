@@ -1,4 +1,4 @@
-package me.yuna;
+package me.yuna.commands;
 
 import java.awt.Color;
 import java.io.IOException;

@@ -11,6 +11,16 @@ import org.json.JSONObject;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 
+import me.yuna.commands.FootballCommand;
+import me.yuna.commands.HelpCommand;
+import me.yuna.commands.MemeCommand;
+import me.yuna.commands.music.JoinVCCommand;
+import me.yuna.commands.music.LeaveVCCommand;
+import me.yuna.commands.music.NowPlayingCommand;
+import me.yuna.commands.music.PlayCommand;
+import me.yuna.commands.music.QueueCommand;
+import me.yuna.commands.music.SkipCommand;
+import me.yuna.commands.music.StopCommand;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -40,11 +50,25 @@ public class Bot {
 		
 		CommandClient client = builder.build();
 
-			client.addCommand(new MemeCommand());
-			client.addCommand(new FootballCommand());
+			// Help command
 			client.addCommand(new HelpCommand());
 			
+			// Random commands (so far)
+			client.addCommand(new MemeCommand());
+			client.addCommand(new FootballCommand());
+	
+			// Music commands
+			client.addCommand(new JoinVCCommand());
+			client.addCommand(new LeaveVCCommand());
+			client.addCommand(new PlayCommand());
+			client.addCommand(new StopCommand());
+			client.addCommand(new SkipCommand());
+			client.addCommand(new QueueCommand());
+			client.addCommand(new NowPlayingCommand());
 		
+			
+			
+			
 		jda.addEventListener(client);
 		
 		

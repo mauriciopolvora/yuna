@@ -1,4 +1,6 @@
-package me.yuna;
+package me.yuna.commands;
+
+import java.awt.Color;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
@@ -21,6 +23,7 @@ public class HelpCommand extends Command {
 		builder.setDescription("Here is the list of commands!" + "\n" + "For more info on a specific command, use `yuna help {command}`");
 		builder.addField("Football", "`football teams` `football jogos`", true);
 		builder.addField("Memes", "`memes`", false);
+		builder.setColor(Color.BLUE);
 		
 		event.reply(builder.build());
 		
