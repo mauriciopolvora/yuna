@@ -57,7 +57,7 @@ public class PlayCommand extends Command {
 
 		
        
-        manager.getGuildMusicManager(event.getGuild()).player.setVolume(10);
+        manager.getGuildMusicManager(event.getGuild()).player.setVolume(15);
 		
 	}
 }

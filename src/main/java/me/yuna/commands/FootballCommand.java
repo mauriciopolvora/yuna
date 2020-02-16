@@ -196,7 +196,7 @@ public class FootballCommand extends Command {
 				builder.setTitle("Equipas na Primeira Liga");
 				builder.setThumbnail("https://img.quizur.com/f/img5cd8683f2b45d9.11096988.png?lastEdited=1557686338");
 				builder.setDescription(response);
-				builder.setColor(Color.BLUE);
+				builder.setColor(Color.cyan);
 				event.reply(builder.build());
 				
 				connection.disconnect();
@@ -215,6 +215,7 @@ public class FootballCommand extends Command {
 			String line;
 			StringBuffer responseContent = new StringBuffer();
 			
+			// HTTPS request
 			try {
 				url = new URL("https://api.football-data.org/v2/competitions/2017/matches");
 				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -241,12 +242,12 @@ public class FootballCommand extends Command {
 				Match[] matches = parseMatches(responseContent.toString());
 				
 				int currentMatchDay = matches[0].getCurrentMatchDay();
-				String response = "Jogos nos proximos 2 dias: " + "\n";
+				String response = "";
 				
 				for (int i = 0; i < matches.length; i++) {
 					
-					while(matches[i].getMatchDay() >= currentMatchDay 
-							&& matches[i].getMatchDay() <= (currentMatchDay + 0)) {
+					while(matches[i].getMatchDay() == currentMatchDay) {
+					
 						StringBuilder matchDateB = new StringBuilder(matches[i].getMatchDate());
 						matchDateB.setCharAt(10, ' ');
 						matchDateB.setCharAt(19, ' ');
@@ -267,7 +268,13 @@ public class FootballCommand extends Command {
 					
 				}
 				
-				event.reply(response);
+				EmbedBuilder builder = new EmbedBuilder();
+				builder.setTitle("Jogos desta semana: ");
+				builder.setDescription(response);
+				builder.setThumbnail("https://img.quizur.com/f/img5cd8683f2b45d9.11096988.png?lastEdited=1557686338");
+				builder.setColor(Color.cyan);
+				
+				event.reply(builder.build());
 				
 				connection.disconnect();
 				

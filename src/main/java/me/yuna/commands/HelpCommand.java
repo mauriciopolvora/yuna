@@ -21,9 +21,10 @@ public class HelpCommand extends Command {
 		System.out.println(event.getSelfUser().getAvatarUrl());
 		builder.setTitle("Command List");
 		builder.setDescription("Here is the list of commands!" + "\n" + "For more info on a specific command, use `yuna help {command}`");
-		builder.addField("Football", "`football teams` `football jogos`", true);
-		builder.addField("Memes", "`memes`", false);
-		builder.setColor(Color.BLUE);
+		builder.addField("Football", "`football teams` | `football jogos`", true);
+		builder.addField("Memes", "`meme`", false);
+		builder.addField("Music", "`play {url}` | `stop` | `np` | `queue` | `skip` ", false);
+		builder.setColor(Color.cyan);
 		
 		event.reply(builder.build());
 		

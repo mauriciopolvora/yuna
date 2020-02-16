@@ -64,9 +64,9 @@ public class PlayerManager {
                     firstTrack = playlist.getTracks().remove(0);
                 }
 
-                channel.sendMessage("Adding to queue " + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
+                channel.sendMessage("Adding to queue: " + firstTrack.getInfo().title + " (first track of playlist " + playlist.getName() + ")").queue();
                 
-                for (int i = this.index ; i < playlist.getTracks().size(); i++) {
+                for (int i = (this.index - 1) ; i < playlist.getTracks().size(); i++) {
                 	
 					play(musicManager, playlist.getTracks().get(i));
 				}

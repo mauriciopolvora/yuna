@@ -1,5 +1,6 @@
 package me.yuna.commands.music;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -38,6 +39,7 @@ public class QueueCommand extends Command {
 			AudioTrack track = tracks.get(i);
 			AudioTrackInfo info = track.getInfo();
 			
+			builder.setColor(Color.cyan);
 			builder.appendDescription(String.format(
 					"%s - %s\n",
 					info.title,
