@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 
+import me.yuna.commands.Ball8Command;
 import me.yuna.commands.FootballCommand;
 import me.yuna.commands.HelpCommand;
 import me.yuna.commands.MemeCommand;
@@ -56,7 +57,7 @@ public class Bot {
 			// Random commands (so far)
 			client.addCommand(new MemeCommand());
 			client.addCommand(new FootballCommand());
-	
+			client.addCommand(new Ball8Command());
 			// Music commands
 			client.addCommand(new JoinVCCommand());
 			client.addCommand(new LeaveVCCommand());
@@ -65,7 +66,7 @@ public class Bot {
 			client.addCommand(new SkipCommand());
 			client.addCommand(new QueueCommand());
 			client.addCommand(new NowPlayingCommand());
-		
+			
 			
 			
 			
