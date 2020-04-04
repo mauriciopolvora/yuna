@@ -6,7 +6,10 @@ import java.net.URL;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 
+import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.managers.AudioManager;
 
 public class PlayCommand extends Command {
  
@@ -48,12 +51,29 @@ public class PlayCommand extends Command {
             return;
             
 		}
+
+		AudioManager audioManager = event.getGuild().getAudioManager();
 		
+		if (!audioManager.isConnected()) {
+			 
+			GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+			 
+			if (!memberVoiceState.inVoiceChannel()) {
+	            event.reply("Not joined yet. Please join a voice channel first.");
+	            return;
+	        }
+			 
+			VoiceChannel voiceChannel = memberVoiceState.getChannel(); 
+			event.reply("Auto-Joining your voice chat...");
+			audioManager.openAudioConnection(voiceChannel);
+			
+		}
 		
-		
-		if (arguments.length > 1)
+		if (arguments.length > 1) {
 			 manager.loadAndPlay(channel, arguments[0], arguments [1]);
-		else  manager.loadAndPlay(channel, arguments[0], "0");
+		} else {
+			manager.loadAndPlay(channel, arguments[0], "0");
+		}
 
 		
        
