@@ -22,6 +22,7 @@ import me.yuna.commands.music.PlayCommand;
 import me.yuna.commands.music.QueueCommand;
 import me.yuna.commands.music.SkipCommand;
 import me.yuna.commands.music.StopCommand;
+import me.yuna.commands.music.VolumeCommand;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -43,10 +44,10 @@ public class Bot {
 				.setToken(tokens.getString("discordtkn")).build();
 				
 		CommandClientBuilder builder = new CommandClientBuilder();
-			builder.setPrefix("yuna");
-			builder.setActivity(Activity.watching("'yuna help'"));
-			builder.setOwnerId("195992711982088192");
-			builder.setHelpWord("helpme");
+		builder.setPrefix("yuna");
+		builder.setActivity(Activity.watching("'yuna help'"));
+		builder.setOwnerId("195992711982088192");
+		builder.setHelpWord("helpme");
 			
 		
 		CommandClient client = builder.build();
@@ -64,6 +65,7 @@ public class Bot {
 			client.addCommand(new PlayCommand());
 			client.addCommand(new StopCommand());
 			client.addCommand(new SkipCommand());
+			client.addCommand(new VolumeCommand());
 			client.addCommand(new QueueCommand());
 			client.addCommand(new NowPlayingCommand());
 			
