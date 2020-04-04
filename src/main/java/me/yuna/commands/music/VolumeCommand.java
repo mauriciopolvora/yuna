@@ -29,9 +29,10 @@ public class VolumeCommand extends Command {
 					
 					int volume = Integer.parseInt(arguments[0]);
 					musicManager.player.setVolume(volume);
+					event.reply("Changed volume to `" + volume + "`");
 					
 				} catch (NumberFormatException ex) {
-					event.reply("Invalid volume: `" + arguments[0] + "` - only integer-percentages allowed");
+					event.reply("Invalid volume: `" + arguments[0] + "` - only integer-values allowed");
 				}
 				
 			} else {
