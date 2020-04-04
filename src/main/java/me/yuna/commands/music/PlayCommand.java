@@ -69,9 +69,11 @@ public class PlayCommand extends Command {
 			
 		}
 		
-		if (arguments.length > 1)
+		if (arguments.length > 1) {
 			 manager.loadAndPlay(channel, arguments[0], arguments [1]);
-		else  manager.loadAndPlay(channel, arguments[0], "0");
+		} else {
+			manager.loadAndPlay(channel, arguments[0], "0");
+		}
 
 		
        
