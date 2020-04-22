@@ -18,7 +18,6 @@ public class PlayerManager {
     private static PlayerManager INSTANCE;
     private final AudioPlayerManager playerManager;
     private final Map<Long, GuildMusicManager> musicManagers;
-    int indexToInt;
 
     private PlayerManager() {
         this.musicManagers = new HashMap<>();
@@ -44,7 +43,8 @@ public class PlayerManager {
 
     public void loadAndPlay(TextChannel channel, String trackUrl , String index) {
         GuildMusicManager musicManager = getGuildMusicManager(channel.getGuild());
-        this.indexToInt = Integer.parseInt(index);
+        
+        final int indexToInt = Integer.parseInt(index);
 
         playerManager.loadItemOrdered(musicManager, trackUrl, new AudioLoadResultHandler() {
             private int index = indexToInt ;
