@@ -8,8 +8,7 @@ import java.util.concurrent.BlockingQueue;
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
-
+import me.yuna.commands.music.PlayerManager.AudioInformation;
 import net.dv8tion.jda.api.EmbedBuilder;
 
 public class QueueCommand extends Command {
@@ -37,13 +36,13 @@ public class QueueCommand extends Command {
 		
 		for (int i = 0; i < trackCount; i++) {
 			AudioTrack track = tracks.get(i);
-			AudioTrackInfo info = track.getInfo();
+			AudioInformation info = AudioInformation.fromTrack(track);
 			
 			builder.setColor(Color.cyan);
 			builder.appendDescription(String.format(
 					"%s - %s\n",
-					info.title,
-					info.author
+					info.getTitle(),
+					info.getAuthor()
 					));
 			
 		}

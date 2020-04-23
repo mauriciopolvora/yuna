@@ -15,7 +15,6 @@ public class PlayCommand extends Command {
  
 	public PlayCommand() {
 		super.name = "play";
-		
 	}
 	
 	private boolean isUrl(String input) {
@@ -57,7 +56,7 @@ public class PlayCommand extends Command {
 		if (!audioManager.isConnected()) {
 			 
 			GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
-			 
+			
 			if (!memberVoiceState.inVoiceChannel()) {
 	            event.reply("Not joined yet. Please join a voice channel first.");
 	            return;
