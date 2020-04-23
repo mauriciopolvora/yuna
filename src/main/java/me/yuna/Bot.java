@@ -13,6 +13,7 @@ import com.jagrosh.jdautilities.command.CommandClientBuilder;
 
 import me.yuna.commands.Ball8Command;
 import me.yuna.commands.BoaNoite;
+import me.yuna.commands.BomDia;
 import me.yuna.commands.FootballCommand;
 import me.yuna.commands.HelpCommand;
 import me.yuna.commands.MemeCommand;
@@ -63,7 +64,7 @@ public class Bot {
 			client.addCommand(new FootballCommand());
 			client.addCommand(new Ball8Command());
 			client.addCommand(new BoaNoite());
-			client.addCommand(new BoaNoite());
+			client.addCommand(new BomDia());
 			// Music commands
 			client.addCommand(new JoinVCCommand());
 			client.addCommand(new LeaveVCCommand());
