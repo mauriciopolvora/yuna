@@ -33,6 +33,8 @@ public class PlayerManager {
 
     // Download-destination directory
     public static final File downloadDirectory = new File("audio_cache");
+    // Forces all ytdl transactions to use ipv4
+    public static final boolean forceIpv4 = true;
 
     private PlayerManager() {
 
@@ -70,6 +72,9 @@ public class PlayerManager {
             query.setOption("quiet"); // --quet
             query.setOption("ignore-errors"); // --ignore-errors
             query.setOption("dump-json"); // --dump-json
+            if (forceIpv4) {
+                query.setOption("force-ipv4"); // --force-ipv4
+            }
             query.setOption("retries", 10); // --retries 10
 
             // Make request and return response
@@ -105,6 +110,9 @@ public class PlayerManager {
                     request.setOption("add-metadata"); // --add-metadata
 
                     request.setOption("output", fileName + "%(title)s.%(ext)s"); // --output www.youtube.com_tmbfT7-tZiM_%(title)s.%(ext)s
+                    if (forceIpv4) {
+                        query.setOption("force-ipv4"); // --force-ipv4
+                    }
                     request.setOption("retries", 10); // --retries 10
 
                     // Make request and return response
@@ -139,7 +147,7 @@ public class PlayerManager {
                 
                 } catch (YoutubeDLException e) {
                     e.printStackTrace(System.err);
-                    channel.sendMessage("Skipping item: Failed youtube download").queue();
+                    channel.sendMessage("Skipping item: Failed ytld-download").queue();
                 } catch (MalformedURLException e) {
                     e.printStackTrace(System.err);
                     channel.sendMessage("F. ... check my logs pls .-.\n   ~ Marlformed URLS  (Skipping item)").queue();
@@ -158,7 +166,7 @@ public class PlayerManager {
 
         } catch (YoutubeDLException e) {
             e.printStackTrace(System.err);
-            channel.sendMessage("F. ... check my logs pls .-.\n   ~ Failed youtube download").queue();
+            channel.sendMessage("F. ... check my logs pls .-.\n   ~ Failed ytld-download").queue();
         }
 
     }
