@@ -111,7 +111,7 @@ public class PlayerManager {
 
                     request.setOption("output", fileName + "%(title)s.%(ext)s"); // --output www.youtube.com_tmbfT7-tZiM_%(title)s.%(ext)s
                     if (forceIpv4) {
-                        query.setOption("force-ipv4"); // --force-ipv4
+                        request.setOption("force-ipv4"); // --force-ipv4
                     }
                     request.setOption("retries", 10); // --retries 10
 
