@@ -17,6 +17,7 @@ import me.yuna.commands.BomDia;
 import me.yuna.commands.FootballCommand;
 import me.yuna.commands.HelpCommand;
 import me.yuna.commands.MemeCommand;
+import me.yuna.commands.anime.RandomImageGet;
 import me.yuna.commands.music.JoinVCCommand;
 import me.yuna.commands.music.LeaveVCCommand;
 import me.yuna.commands.music.NowPlayingCommand;
@@ -65,6 +66,7 @@ public class Bot {
 			client.addCommand(new Ball8Command());
 			client.addCommand(new BoaNoite());
 			client.addCommand(new BomDia());
+			client.addCommand(new RandomImageGet());
 			// Music commands
 			client.addCommand(new JoinVCCommand());
 			client.addCommand(new LeaveVCCommand());
