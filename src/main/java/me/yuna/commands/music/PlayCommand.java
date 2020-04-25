@@ -33,7 +33,7 @@ public class PlayCommand extends Command {
 		TextChannel channel = event.getTextChannel();
 		String[] arguments = event.getArgs().split(" ");
 		
-	
+		AudioManager audioManager = event.getGuild().getAudioManager();
 		
 		if (arguments.length == 0) {
 			event.reply("Please provide arguments");
@@ -41,31 +41,20 @@ public class PlayCommand extends Command {
 			
 		} 
 			
-		if (!isUrl(arguments[0])) {
-			
-            // Use the youtube api for search instead, making a lot of requests with "ytsearch:" will get you blocked
-			
-            event.reply("Please provide a valid youtube, soundcloud or bandcamp link");
+		if (!isUrl(arguments[0])) {			
+			if (!audioManager.isConnected()) {
+				connectBot(event, audioManager);				
+			}
+			String name = event.getArgs().replaceAll(" ", "_");
+			String query ="ytsearch:" + name;
+			System.out.println(query);
+			manager.loadAndPlay(channel, query, "0");
 
             return;
             
-		}
-
-		AudioManager audioManager = event.getGuild().getAudioManager();
-		
-		if (!audioManager.isConnected()) {
-			 
-			GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
-			
-			if (!memberVoiceState.inVoiceChannel()) {
-	            event.reply("Not joined yet. Please join a voice channel first.");
-	            return;
-	        }
-			 
-			VoiceChannel voiceChannel = memberVoiceState.getChannel(); 
-			event.reply("Auto-Joining your voice chat...");
-			audioManager.openAudioConnection(voiceChannel);
-			
+		}		
+		if (!audioManager.isConnected()) { 
+			connectBot(event, audioManager);
 		}
 		
 		if (arguments.length > 1) {
@@ -74,9 +63,20 @@ public class PlayCommand extends Command {
 			manager.loadAndPlay(channel, arguments[0], "0");
 		}
 
-		
-       
         manager.getGuildMusicManager(event.getGuild()).player.setVolume(25);
 		
+	}
+	
+	private void connectBot(CommandEvent event, AudioManager audioManager) {
+		GuildVoiceState memberVoiceState = event.getMember().getVoiceState();
+		
+		if (!memberVoiceState.inVoiceChannel()) {
+            event.reply("Not joined yet. Please join a voice channel first.");
+            return;
+        }
+		 
+		VoiceChannel voiceChannel = memberVoiceState.getChannel(); 
+		event.reply("Auto-Joining your voice chat...");
+		audioManager.openAudioConnection(voiceChannel);
 	}
 }

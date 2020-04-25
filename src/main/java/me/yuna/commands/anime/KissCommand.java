@@ -1,7 +1,6 @@
 package me.yuna.commands.anime;
 
 import java.io.File;
-import java.net.MalformedURLException;
 import java.util.Random;
 
 import com.jagrosh.jdautilities.command.Command;
@@ -11,10 +10,10 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.MessageChannel;
 
 
-public class RandomImageGet extends Command{
+public class KissCommand extends Command{
 
 	
-	public RandomImageGet() {
+	public KissCommand() {
 		super.name = "kiss";
 	}
 	
@@ -40,6 +39,7 @@ public class RandomImageGet extends Command{
 			 channel.sendFile(file, "image.gif").embed(embed.build()).queue();
 			
 		}
+		
 
 		
 		
