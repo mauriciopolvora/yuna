@@ -12,7 +12,7 @@ public class BoaNoite extends Command {
 	@Override
 	protected void execute(CommandEvent event) {
 		
-		event.reply("Obrigado, boa noite dorme bem <3, sonhos cor de rosa abraçados ao teu peluche.");
+		event.reply("Obrigado, boa noite dorme bem <3, sonhos cor de rosa abraçados ao teu noddy.");
 	}
 
 }
