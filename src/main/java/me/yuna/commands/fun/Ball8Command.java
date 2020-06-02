@@ -1,6 +1,4 @@
-package me.yuna.commands;
-
-
+package me.yuna.commands.fun;
 
 import java.util.Random;
 

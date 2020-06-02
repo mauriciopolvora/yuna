@@ -1,4 +1,4 @@
-package me.yuna.commands;
+package me.yuna.commands.api;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -18,11 +18,9 @@ import net.dv8tion.jda.api.EmbedBuilder;
 public class MemeCommand extends Command {
 
 	
-	
 	public MemeCommand() {
 		super.name = "meme";
-		
-		
+
 	}
 	
 	

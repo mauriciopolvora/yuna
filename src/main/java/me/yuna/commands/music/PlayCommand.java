@@ -1,20 +1,28 @@
 package me.yuna.commands.music;
 
+import java.awt.Color;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.entities.VoiceChannel;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.managers.AudioManager;
 
 public class PlayCommand extends Command {
  
-	public PlayCommand() {
+	private EventWaiter waiter;
+	
+	public PlayCommand(EventWaiter waiter) {
 		super.name = "play";
+		this.waiter = waiter;
 	}
 	
 	private boolean isUrl(String input) {
@@ -27,6 +35,7 @@ public class PlayCommand extends Command {
         }
     }
 	
+
 	@Override
 	protected void execute(CommandEvent event) {
 		PlayerManager manager = PlayerManager.getInstance();
@@ -45,10 +54,40 @@ public class PlayCommand extends Command {
 			if (!audioManager.isConnected()) {
 				connectBot(event, audioManager);				
 			}
+			event.reply("Getting video info... Please wait.");
 			String name = event.getArgs().replaceAll(" ", "_");
-			String query ="ytsearch:" + name;
-			System.out.println(query);
-			manager.loadAndPlay(channel, query, "0");
+			String query ="ytsearch5:" + name;
+			System.out.println(query);	
+			String[] list = manager.list(channel, query);
+			
+			String print = "`1- " + list[0] + "`\n" + 
+						"`2- " + list[1] + "`\n" + 
+						"`3- " + list[2] + "`\n" + 
+						"`4- " + list[3] + "`\n" + 
+						"`5- " + list[4] + "`\n" +
+						"`6- Exit`\n";
+			EmbedBuilder builder = new EmbedBuilder();
+			builder.setTitle("Results");
+			builder.setColor(Color.cyan);
+			builder.setDescription(print);
+			event.reply(builder.build());
+			
+			waiter.waitForEvent(GuildMessageReceivedEvent.class, e -> e.getAuthor().equals(event.getAuthor()) && e.getChannel().equals(event.getChannel()) 
+					, e -> {
+						
+						
+						String message = e.getMessage().getContentRaw().toString();						
+						int querylocation = Integer.parseInt(message);
+						
+						if(querylocation == 6) {
+							event.reply("Exiting");
+							return;
+						}
+
+						String queryPlay = "ytsearch:" + list[querylocation-1].replaceAll(" ", "_");
+						manager.loadAndPlay(channel, queryPlay, "0");
+		
+					} );				
 
             return;
             

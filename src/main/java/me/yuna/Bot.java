@@ -10,13 +10,15 @@ import org.json.JSONObject;
 
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
+import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 
-import me.yuna.commands.Ball8Command;
-import me.yuna.commands.BoaNoite;
-import me.yuna.commands.BomDia;
-import me.yuna.commands.FootballCommand;
+import me.yuna.commands.fun.Ball8Command;
+import me.yuna.commands.fun.BoaNoite;
+import me.yuna.commands.fun.BomDia;
+import me.yuna.commands.api.FootballCommand;
 import me.yuna.commands.HelpCommand;
-import me.yuna.commands.MemeCommand;
+import me.yuna.commands.api.MemeCommand;
+import me.yuna.commands.api.SpaceX;
 import me.yuna.commands.anime.KissCommand;
 import me.yuna.commands.music.JoinVCCommand;
 import me.yuna.commands.music.LeaveVCCommand;
@@ -56,13 +58,17 @@ public class Bot {
 			
 		
 		CommandClient client = builder.build();
+		EventWaiter waiter = new EventWaiter();
 
 			// Help command
 			client.addCommand(new HelpCommand());
 			
-			// Random commands (so far)
-			client.addCommand(new MemeCommand());
+			//api commands
 			client.addCommand(new FootballCommand());
+			client.addCommand(new MemeCommand());
+			client.addCommand(new SpaceX(waiter));
+
+			// Random commands (so far)
 			client.addCommand(new Ball8Command());
 			client.addCommand(new BoaNoite());
 			client.addCommand(new BomDia());
@@ -71,7 +77,7 @@ public class Bot {
 			// Music commands
 			client.addCommand(new JoinVCCommand());
 			client.addCommand(new LeaveVCCommand());
-			client.addCommand(new PlayCommand());
+			client.addCommand(new PlayCommand(waiter));
 			client.addCommand(new StopCommand());
 			client.addCommand(new SkipCommand());
 			client.addCommand(new PauseCommand());
@@ -82,7 +88,7 @@ public class Bot {
 			
 			
 			
-			
+		jda.addEventListener(waiter);
 		jda.addEventListener(client);
 		
 		

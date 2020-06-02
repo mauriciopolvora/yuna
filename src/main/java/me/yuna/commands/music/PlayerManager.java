@@ -62,6 +62,31 @@ public class PlayerManager {
         return musicManager;
     }
 
+    public String[] list(TextChannel channel, String query) {
+		
+		try {
+
+			// Build request
+			YoutubeDLRequest request = new YoutubeDLRequest(query);
+			request.setOption("ignore-errors");		// --ignore-errors
+			request.setOption("retries", 10);		// --retries 10
+			request.setOption("get-title");
+			
+			// Make request and return response
+		    YoutubeDLResponse queryResult;
+		    queryResult = YoutubeDL.execute(request);
+		     
+		    String[] list = queryResult.getOut().split("\n");  
+		   
+		    return list;
+		            
+		} catch (Exception e) {
+			System.out.println("Mhh cant find any?");
+		}
+		return null;
+	} 
+    
+    
     public void loadAndPlay(final TextChannel channel, final String trackUrl, final String index) {
         final GuildMusicManager musicManager = getGuildMusicManager(channel.getGuild());
         channel.sendMessage("Okay... *looking up*").queue();
@@ -270,5 +295,7 @@ public class PlayerManager {
                 throw new ClassCastException("User-data in AudioTrack is not of the type AudioInformation!");
             }
         }
-    } 
+    }
+
+
 }

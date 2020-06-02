@@ -1,4 +1,4 @@
-package me.yuna.commands;
+package me.yuna.commands.fun;
 
 import com.jagrosh.jdautilities.command.Command;
 import com.jagrosh.jdautilities.command.CommandEvent;
