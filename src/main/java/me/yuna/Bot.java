@@ -47,8 +47,8 @@ public class Bot {
 		String file = new String(Files.readAllBytes(new File("tokens.tkn").toPath()));
 		this.tokens = new JSONObject(file);
 	
-		final JDA jda = new JDABuilder(AccountType.BOT)
-				.setToken(tokens.getString("discordtkn")).build();
+		//final JDA jda = new JDABuilder(AccountType.BOT).setToken(tokens.getString("discordtkn")).build();
+		final JDA jda = JDABuilder.createDefault(tokens.getString("discordtkn")).build();
 				
 		CommandClientBuilder builder = new CommandClientBuilder();
 		builder.setPrefix("yuna");
@@ -90,8 +90,6 @@ public class Bot {
 			
 		jda.addEventListener(waiter);
 		jda.addEventListener(client);
-		
-		
 	}
 	
 public static void main(String[] args) throws LoginException, IOException {
