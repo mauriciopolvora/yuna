@@ -15,6 +15,8 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import me.yuna.commands.fun.Ball8Command;
 import me.yuna.commands.fun.BoaNoite;
 import me.yuna.commands.fun.BomDia;
+import me.yuna.commands.api.AATCommand;
+import me.yuna.commands.api.EcchiCommand;
 import me.yuna.commands.api.FootballCommand;
 import me.yuna.commands.HelpCommand;
 import me.yuna.commands.api.MemeCommand;
@@ -30,7 +32,6 @@ import me.yuna.commands.music.ResumeCommand;
 import me.yuna.commands.music.SkipCommand;
 import me.yuna.commands.music.StopCommand;
 import me.yuna.commands.music.VolumeCommand;
-import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -67,6 +68,8 @@ public class Bot {
 			client.addCommand(new FootballCommand());
 			client.addCommand(new MemeCommand());
 			client.addCommand(new SpaceX(waiter));
+			client.addCommand(new EcchiCommand());
+			client.addCommand(new AATCommand());
 
 			// Random commands (so far)
 			client.addCommand(new Ball8Command());
